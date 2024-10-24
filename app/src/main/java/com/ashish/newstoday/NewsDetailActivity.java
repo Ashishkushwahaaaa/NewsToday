@@ -38,11 +38,11 @@ public class NewsDetailActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         desc = getIntent().getStringExtra("desc");
         content = getIntent().getStringExtra("content");
-        imageUrl = getIntent().getStringExtra("Image");
-        url = getIntent().getStringExtra("url");
+        imageUrl = getIntent().getStringExtra("url"); //Receiving the image url through url key (anywhere reversed and i can't identify)
+        url = getIntent().getStringExtra("Image"); //Receiving the url through Image key (anywhere reversed and i can't identify)
 
-        Log.d("NewsDetailActivity_image", "onCreate:" + url);
-        Log.d("NewsDetailActivity_url", "onCreate:" + imageUrl);
+        Log.d("NewsDetailActivity_image", "onCreate:" + imageUrl);
+        Log.d("NewsDetailActivity_url", "onCreate:" + url);
         Log.d("NewsDetailActivity_content", "onCreate:" + content);
 
         idIVNews = findViewById(R.id.idIVNews);
@@ -56,7 +56,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         idTVContent.setText(content);
 
         if (url != null ) {
-            Picasso.get().load(url).placeholder(R.drawable.baseline_autorenew_24).error(R.drawable.baseline_newspaper_24).into(idIVNews);
+            Picasso.get().load(imageUrl).placeholder(R.drawable.baseline_autorenew_24).error(R.drawable.baseline_newspaper_24).into(idIVNews);
         } else {
             idIVNews.setImageResource(R.drawable.baseline_newspaper_24);
         }
@@ -65,9 +65,15 @@ public class NewsDetailActivity extends AppCompatActivity {
         idBVReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(imageUrl));
-                startActivity(i);
+
+                //This is taking to the browser, we want to surf within our app so will be adding a webView and passing the url
+//                Intent i = new Intent(Intent.ACTION_VIEW);
+//                i.setData(Uri.parse(imageUrl));
+//                startActivity(i);
+
+                Intent intent = new Intent(NewsDetailActivity.this, WebViewContent.class);
+                intent.putExtra("ContentUrl", url);
+                startActivity(intent);
             }
         });
 
