@@ -6,17 +6,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
+    android:background="@color/black"
     tools:context=".NewsDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@color/yellow"
-        android:background="@color/black_shade_1"
-        app:title="News Today"
-        android:id="@+id/toolbar"
-        android:layout_centerHorizontal="true"/>
+        android:background="@color/ToolbarBackground">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="News Today"
+                android:textColor="@color/yellow"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -82,6 +96,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:textAllCaps="false"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

@@ -36,12 +36,14 @@ public class NewsRVAdapter extends RecyclerView.Adapter<NewsRVAdapter.ViewHolder
     public void onBindViewHolder(@NonNull NewsRVAdapter.ViewHolder holder, int position) {
         Articles articles = articlesArrayList.get(position);
         holder.titleTV.setText(articles.getTitle());
-        holder.SubTitleTV.setText(articles.getDescription());
+//        holder.SubTitleTV.setText(articles.getDescription()); //previously i was showing the subtitle also outside on the recyclerViewHolder but now on click on particular recyclerViewHolder when opening new activity;
+        holder.SubTitleTV.setText("Click to Read More..."); //at the place of the subtitle now only showing the click to read more;
 
-        Log.d("Image_URL", "ImageUrl"+articles.getUrlToImage());
-        Log.d("News_URL", "NewsUrl" + articles.getUrl());
+        Log.d("Image_URL", "ImageUrl"+articles.getUrlToImage()); //Getting url(news url) and not the image url through getUrlToImage() method;
+        Log.d("News_URL", "NewsUrl" + articles.getUrl()); //Getting ImageUrl(Image's url) and not the News's url through getUrl() method;
 
-        if (articles.getUrlToImage() != null && !articles.getUrlToImage().isEmpty()) {
+        //So now will be using image url and News url in reversed place;
+        if (articles.getUrl() != null && !articles.getUrl().isEmpty()) {
             Picasso.get().load(articles.getUrl()).placeholder(R.drawable.baseline_autorenew_24).error(R.drawable.baseline_newspaper_24).into(holder.newsIV);
         } else {
             holder.newsIV.setImageResource(R.drawable.baseline_newspaper_24);
@@ -54,9 +56,7 @@ public class NewsRVAdapter extends RecyclerView.Adapter<NewsRVAdapter.ViewHolder
                 i.putExtra("title", articles.getTitle());
                 i.putExtra("desc", articles.getDescription());
                 i.putExtra("Image", articles.getUrlToImage());
-                Log.d("Image_URL_BTN", "ImageUrl"+ articles.getUrlToImage());
                 i.putExtra("url", articles.getUrl());
-                Log.d("News_URL_BTN", "NewsUrl" + articles.getUrl());
                 i.putExtra("content", articles.getContents());
                 context.startActivity(i);
             }
