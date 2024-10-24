@@ -44,9 +44,9 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/idIVNews"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:layout_margin="3dp"
                 android:padding="3dp"/>
             <TextView
